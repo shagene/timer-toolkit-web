@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { BaseTimerState, createTimerSlice } from './timer-base.store'
+import { useSettingsStore } from './settings.store'
 
 interface RandomTimerState extends BaseTimerState {
   minTime: number
@@ -15,6 +16,7 @@ interface RandomTimerState extends BaseTimerState {
   setIsLoopMode: (isLoop: boolean) => void
   generateRandomTime: () => void
   nextRound: () => void
+  tick: () => void
 }
 
 export const useRandomTimerStore = create<RandomTimerState>()((set, get) => {
@@ -57,6 +59,12 @@ export const useRandomTimerStore = create<RandomTimerState>()((set, get) => {
       if (state.currentTime > 0) {
         set({ currentTime: state.currentTime - 1 })
       } else {
+        const settings = useSettingsStore.getState()
+        if (settings.soundEnabled) {
+          const audio = new Audio('/sounds/beep.mp3')
+          audio.volume = settings.soundVolume
+          audio.play()
+        }
         state.pause()
         state.nextRound()
       }

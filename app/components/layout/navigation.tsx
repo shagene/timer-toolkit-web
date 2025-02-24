@@ -9,7 +9,7 @@ export default function Navigation() {
   return (
     <nav className="fixed bottom-0 left-0 w-full bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
       <div className="max-w-[600px] mx-auto px-4">
-        <div className="flex justify-around py-4">
+        <div className="flex justify-around py-2"> {/* Reduced padding from py-4 to py-2 */}
           <Link 
             href="/random-timer"
             className={`flex flex-col items-center ${

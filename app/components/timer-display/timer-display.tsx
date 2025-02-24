@@ -20,7 +20,7 @@ export default function TimerDisplay({
   showProgress = true,
 }: TimerDisplayProps) {
   const progressRef = useRef<SVGCircleElement>(null);
-  const radius = 45;
+  const radius = 58; // Increased radius for bigger circle
   const circumference = 2 * Math.PI * radius;
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function TimerDisplay({
   }, [seconds, totalSeconds, showProgress, circumference]);
 
   return (
-    <div className="relative w-64 h-64 flex items-center justify-center">
+    <div className="relative w-64 h-64 flex items-center justify-center"> {/* Larger container */}
       {showProgress && (
         <svg className="absolute w-full h-full -rotate-90">
           <circle
@@ -56,10 +56,10 @@ export default function TimerDisplay({
       )}
       
       <div className="text-center z-10">
-        <div className="text-5xl font-bold mb-2">
+        <div className="text-4xl font-bold mb-1"> {/* Kept original text size */}
           {Math.floor(seconds / 60)}:{String(seconds % 60).padStart(2, '0')}
         </div>
-        {phase && <div className="text-lg text-gray-600 dark:text-gray-300">{phase}</div>}
+        {phase && <div className="text-base text-gray-600 dark:text-gray-300">{phase}</div>}
         {round !== undefined && totalRounds !== undefined && (
           <div className="text-sm text-gray-500 dark:text-gray-400">
             Round {round}/{totalRounds}
