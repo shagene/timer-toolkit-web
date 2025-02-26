@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { BaseTimerState, createTimerSlice } from './timer-base.store'
 import { useSettingsStore } from './settings.store'
+import { playSound } from '../utils/sound'
 
 interface RandomTimerState extends BaseTimerState {
   minTime: number
@@ -61,10 +62,9 @@ export const useRandomTimerStore = create<RandomTimerState>()((set, get) => {
       } else {
         const settings = useSettingsStore.getState()
         if (settings.soundEnabled) {
-          const audio = new Audio('/sounds/beep.mp3')
-          audio.volume = settings.soundVolume
-          audio.play()
+          playSound(settings.selectedSound, settings.soundVolume)
         }
+        
         state.pause()
         state.nextRound()
       }

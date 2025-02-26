@@ -11,6 +11,7 @@ export default {
     extend: {
       colors: {
         primary: {
+          DEFAULT: 'var(--color-primary)',
           50: '#f0f9ff',
           100: '#e0f2fe',
           200: '#bae6fd',
@@ -23,6 +24,7 @@ export default {
           900: '#0c4a6e',
         },
         secondary: {
+          DEFAULT: 'var(--color-secondary)',
           50: '#fff7ed',
           100: '#ffedd5',
           200: '#fed7aa',
